@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+
     private void createPdf(String sometext) {
         // create a new document
         PdfDocument document = new PdfDocument();
@@ -76,15 +76,15 @@ public class MainActivity extends AppCompatActivity {
         document.finishPage(page);
 
         // write the document content
-//        String directory_path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Dir";
-        File file = new File(Environment.getExternalStorageDirectory(),"/HELLO.pdf");
+        String directory_path = Environment.getExternalStorageDirectory().getPath() + "/mypdf/";
+        File file = new File(directory_path);
         if (!file.exists()) {
             file.mkdirs();
         }
-//        String targetPdf = directory_path + "test-2.pdf";
-//        File filePath = new File(file, "abc.pdf");
+        String targetPdf = directory_path + "test-2.pdf";
+        File filePath = new File(file, "abc.pdf");
         try {
-            document.writeTo(new FileOutputStream(file));
+            document.writeTo(new FileOutputStream(filePath));
             Toast.makeText(this, "Done", Toast.LENGTH_LONG).show();
         } catch (IOException e) {
             Log.e("main", "error " + e.toString());
