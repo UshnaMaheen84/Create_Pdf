@@ -8,6 +8,7 @@ import android.os.Environment;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.itextpdf.text.Document;
 import com.itextpdf.text.pdf.PdfWriter;
 
 import java.io.File;
@@ -39,6 +40,7 @@ public class CreatePdf extends AppCompatActivity {
         OutputStream outputStream = new FileOutputStream(file);
 
         PdfWriter writer = new PdfWriter(file);
-        PdfDocument document = new PdfDocument(writer);
+        PdfDocument pdfDocument = new PdfDocument(writer);
+        Document document = new Document(pdfDocument);
     }
 }
