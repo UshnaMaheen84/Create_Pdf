@@ -53,7 +53,7 @@ public class CreatePdf extends AppCompatActivity {
 
             // Adding cells to the table
             table.addCell(new Cell().add("Name"));
-            table.addCell(new Cell().add("Raju"));
+            table.addCell(new Cell().add("Rimsha"));
             table.addCell(new Cell().add("Id"));
             table.addCell(new Cell().add("1001"));
             table.addCell(new Cell().add("Designation"));
