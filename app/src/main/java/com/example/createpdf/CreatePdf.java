@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 
@@ -50,8 +51,8 @@ public class CreatePdf extends AppCompatActivity {
             PdfWriter writer = PdfWriter.getInstance(document,outputStream);
             document.open();
 
-            float [] pointColumnWidths = {150F, 150F, 150F};
-            Table table = new Table(pointColumnWidths);
+            float [] columnWidths = {150, 150, 150};
+            Table table = new Table(columnWidths);
 
             // Adding cells to the table
             table.addCell(new Cell().add(new Paragraph("Name")));
@@ -61,6 +62,8 @@ public class CreatePdf extends AppCompatActivity {
             table.addCell(new Cell().add(new Paragraph("Designation")));
             table.addCell(new Cell().add(new Paragraph("Programmer")));
 
+            document.add((Element) table);
+            document.close();
 
         } catch (DocumentException e) {
             e.printStackTrace();
