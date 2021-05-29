@@ -34,14 +34,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        btnCreate = (Button) findViewById(R.id.create);
-        editText = (EditText) findViewById(R.id.edittext);
-        btnCreate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                createPdf(editText.getText().toString());
-            }
-        });
+        //btnCreate = (Button) findViewById(R.id.create);
+//        editText = (EditText) findViewById(R.id.edittext);
+//        btnCreate.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                createPdf(editText.getText().toString());
+//            }
+//        });
 
     }
 
