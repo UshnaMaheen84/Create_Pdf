@@ -23,12 +23,28 @@ public class Base64DecodePdf extends AppCompatActivity {
 
         try {
             FileOutputStream fos = new FileOutputStream(file);
+//
+//            String b64 = "MDAzODE2OTJfT1JEMDAwOTAwNzA0NDFfRFhC";
+//
+//            byte[] decoder = Base64.getDecoder().decode(b64);
+//
+//            fos.write(decoder);
 
-            String b64 = "MDAzODE2OTJfT1JEMDAwOTAwNzA0NDFfRFhC";
+            String b64 = "00381692_ORD00090070441_DXB";
 
-            byte[] decoder = Base64.getDecoder().decode(b64);
+            Base64.Encoder enc = Base64.getEncoder();
+            Base64.Decoder dec = Base64.getDecoder();
 
-            fos.write(decoder);
+            // encode data using BASE64
+            String encoded = enc.encodeToString(b64.getBytes());
+            Log.e("main", "encoded value is \t" + encoded);
+
+            // Decode data
+            String decoded = new String(dec.decode(encoded));
+            System.out.println("decoded value is \t" + decoded);
+            System.out.println("original value is \t" + b64);
+            Log.e("main", "decoded value is \t" + decoded);
+            Log.e("main", "original value is \t" + b64);
 
             Toast.makeText(this, "PDF File Saved", Toast.LENGTH_LONG).show();
 

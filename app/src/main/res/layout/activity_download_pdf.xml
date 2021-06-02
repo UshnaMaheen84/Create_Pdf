@@ -9,6 +9,23 @@
     android:layout_height="match_parent"
     tools:context=".DownloadPdf">
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:boxStrokeColor="@color/purple_200"
+        app:boxStrokeWidth="2dp"
+        android:padding="2dp"
+        android:layout_margin="15dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/inputInvoiceValue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Invoice Number" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
     <Button
         android:id="@+id/download_pdf"
         android:layout_width="wrap_content"

@@ -15,6 +15,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.android.material.textfield.TextInputEditText;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -23,12 +25,14 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Base64;
 
 public class DownloadPdf extends AppCompatActivity {
 
     Button download_pdf;
+    TextInputEditText textInputEditText;
 
-
+    String inputInvoiceValue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,30 +43,41 @@ public class DownloadPdf extends AppCompatActivity {
         StrictMode.setThreadPolicy(policy);
 
         download_pdf = findViewById(R.id.download_pdf);
-
+        textInputEditText = findViewById(R.id.inputInvoiceValue);
+        inputInvoiceValue = textInputEditText.getText().toString();
 
         download_pdf.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(DownloadPdf.this, "Please wait file is downloading.", Toast.LENGTH_LONG).show();
 
-                downloadPdfContent();
+                if (!textInputEditText.getText().toString().isEmpty()) {
+                    inputInvoiceValue = textInputEditText.getText().toString();
 
+                    Toast.makeText(DownloadPdf.this, "Please wait file is downloading.", Toast.LENGTH_LONG).show();
+                    downloadPdfContent(inputInvoiceValue);
+                } else {
+                    Toast.makeText(DownloadPdf.this, "Please enter Invoice Value", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
     }
 
-    public void downloadPdfContent() {
+    public void downloadPdfContent(String inputInvoiceValue) {
 
         try {
-            String urlToDownload = "https://app.saudigerman.com/LabReport?DocId=MDAzODE2OTJfT1JEMDAwOTAwNzA0NDFfRFhC";
+            // encode data using BASE64
+
+            Base64.Encoder enc = Base64.getEncoder();
+            String encoded = enc.encodeToString(inputInvoiceValue.getBytes());
+            Log.e("main", "encoded value is \t" + encoded);
+
+            String urlToDownload = "https://app.saudigerman.com/LabReport?DocId="+encoded;
 
 //           download pdf file.
 
             URL url = new URL(urlToDownload);
             HttpURLConnection c = (HttpURLConnection) url.openConnection();
-
             c.connect();
 
             String path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString();
@@ -98,9 +113,9 @@ public class DownloadPdf extends AppCompatActivity {
         pdfIntent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
 
 
-        try{
+        try {
             startActivity(pdfIntent);
-        }catch(ActivityNotFoundException e){
+        } catch (ActivityNotFoundException e) {
             Toast.makeText(DownloadPdf.this, "No Application available to view PDF", Toast.LENGTH_SHORT).show();
         }
 

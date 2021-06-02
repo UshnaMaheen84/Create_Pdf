@@ -14,10 +14,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CreatePdf">
-        <activity android:name=".Base64DecodePdf" />
+        <activity android:name=".DownloadPdf" />
         <activity android:name=".CreatePdf" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".DownloadPdf">
+        <activity android:name=".Base64DecodePdf">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
